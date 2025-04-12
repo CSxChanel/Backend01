@@ -1,0 +1,24 @@
+{
+    "scripts": {
+        "start": "nodemon app.js",
+        "main": "nodemon main.js",
+        "server": "nodemon server.js"
+    },
+    "dependencies": {
+        "bcryptjs": "^3.0.2",
+        "cookie-parser": "^1.4.7",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^5.1.0",
+        "jsonwebtoken": "^9.0.2",
+        "mysql2": "^3.14.0",
+        "nodemon": "^3.1.9"
+    },
+    "name": "backend",
+    "version": "1.0.0",
+    "main": "main.js",
+    "keywords": [],
+    "author": "cecep_sudrajat",
+    "license": "ISC",
+    "description": "belajar membuat Backend, API"
+}
