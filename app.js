@@ -6,7 +6,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 
 // Middleware global
 app.use(cors({ origin: true, credentials: true })); // untuk tes API dari luar semua domain
