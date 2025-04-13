@@ -11,7 +11,7 @@ const EXPIRED_KEY = process.env.EXPIRED_KEY;
 
 // POST auth/register UNTUK REGISTER
 const register = async (req, res) => {
-    const { username, email, password, confirmPassword } = req.body;
+    const { username, email, password } = req.body;
 
     try {
         // Validasi panjang password
@@ -27,16 +27,16 @@ const register = async (req, res) => {
         }
 
         // Validasi password dan confirm password sama
-        if (password !== confirmPassword) {
-            return response(
-                res,
-                400,
-                false,
-                "Password tidak sama dengan Confirm-password!",
-                null,
-                "Registrasi gagal."
-            );
-        }
+        // if (password !== confirmPassword) {
+        //     return response(
+        //         res,
+        //         400,
+        //         false,
+        //         "Password tidak sama dengan Confirm-password!",
+        //         null,
+        //         "Registrasi gagal."
+        //     );
+        // }
 
         const connection = await db();
 
@@ -70,9 +70,9 @@ const register = async (req, res) => {
             role: "user"
         };
 
-        response(res, 201, true, "Registrasi berhasil", user);
+        response(res, 201, true, "Registrasi berhasil.", user);
     } catch (err) {
-        response(res, 500, false, "Gagal register", null, {
+        response(res, 500, false, "Gagal register!", null, {
             message: err.message
         });
     }
@@ -87,7 +87,7 @@ const login = async (req, res) => {
             res,
             400,
             false,
-            "Mohon isi username/email dan password",
+            "Mohon isi username/email dan password!",
             null,
             "Login gagal!"
         );
@@ -106,7 +106,7 @@ const login = async (req, res) => {
                 res,
                 404,
                 false,
-                "Username atau Email tidak ditemukan",
+                "Username atau Email tidak ditemukan!",
                 null,
                 "Login gagal!"
             );
@@ -158,9 +158,9 @@ const login = async (req, res) => {
 
         delete user.password;
 
-        response(res, 200, true, "Login berhasil", { user, token });
+        response(res, 200, true, "Login berhasil.", { user, token });
     } catch (err) {
-        response(res, 500, false, "Terjadi kesalahan saat login", null, {
+        response(res, 500, false, "Terjadi kesalahan saat login.", null, {
             message: err.message
         });
     }
@@ -178,7 +178,7 @@ const forgotPassword = async (req, res) => {
         );
 
         if (users.length === 0) {
-            return response(res, 404, false, "Email tidak terdaftar.");
+            return response(res, 404, false, "Email tidak terdaftar!");
         }
 
         const user = users[0];
@@ -202,7 +202,7 @@ const forgotPassword = async (req, res) => {
         // Misalnya: kirim via email, tapi untuk testing kita tampilkan saja:
         response(res, 200, true, "Token reset berhasil di kirim.", { resetToken });
     } catch (err) {
-        response(res, 500, false, "Gagal membuat token reset", null, {
+        response(res, 500, false, "Gagal membuat token reset!", null, {
             message: err.message
         });
     }
@@ -222,13 +222,13 @@ const resetPassword = async (req, res) => {
             [hashedPassword, decoded.id]
         );
 
-        response(res, 200, true, "Password berhasil direset");
+        response(res, 200, true, "Password berhasil direset.");
     } catch (err) {
         response(
             res,
             400,
             false,
-            "Token tidak valid atau sudah expired",
+            "Token tidak valid atau sudah expired!",
             null,
             { message: err.message }
         );
@@ -301,7 +301,7 @@ const logout = async (req, res) => {
     await connection.end();
 
     res.clearCookie("refreshToken");
-    response(res, 200, false, "Logout berhasil", null, null);
+    response(res, 200, false, "Logout berhasil.", null, null);
 };
 
 module.exports = {
