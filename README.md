@@ -85,7 +85,7 @@ Authorization: Bearer <token>
 
 ### 1. Clone project
 ```bash
-git clone https://github.com/username/cphone-backend.git
+git clone https://github.com/CSxChanel/Backend01.git
 cd cphone-backend
 ```
 
